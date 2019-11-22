@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		p{
+			font-size:30px;
+			font-family: Verdana; 
+		}
+		button{
+			font-size:30px; 
+		}
+		input{
+			width:20%;
+			height:50px;
+			font-size:30px;
+			border:3px solid red ; ;
+			margin-left:3%    
+		}
+	</style>
+</head>
+<body>
+<p>Число 1<input type="text" id="q1"></p>
+<p>Число 2<input type="text" id="q2"></p>
+<button onclick="plus()">+</button>
+<button onclick="minus()">-</button>
+<button onclick="delen()">:</button>
+<button onclick="mnog()">*</button>
+<button onclick="ostdelen()">%</button>
+<hr>
+<p>Результат:<span id="out"></span></p>
+<button onclick="obnov()">Обновить</button>
+<script src="calc.js"></script>
+</body>
+</html>
