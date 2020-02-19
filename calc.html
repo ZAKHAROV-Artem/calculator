@@ -1,205 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    body {
-      background-color: #34495e;
-      overflow-x: hidden;
-    }
-
-    .wrapper {
-      display: grid;
-      width: 100%;
-      height: 100%;
-      grid-template-column: 2fr 1fr 2fr;
-    }
-
-
-
-    .notSpic {
-      background-color: #48dbfb;
-      margin-top: 5px;
-      grid-column: 1/4;
-      padding: 20px;
-      font-family: arial;
-      border-radius: 10px;
-      transition: 0.4s;
-
-    }
-
-    .spic {
-      background-color: #f1c40f;
-      margin-top: 5px;
-      grid-column: 1/4;
-      transition: 0.4s;
-      padding: 20px;
-      font-family: arial;
-      border-radius: 10px;
-    }
-
-    .vazhnaya {
-      display: none;
-      text-align: center;
-      border-radius: 10px;
-      background-color: rgb(255, 199, 0);
-      grid-column: 1/2;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-      transition: 0.4s;
-      font-family: arial;
-      margin-right: 10px;
-    }
-
-    .prostaya {
-      display: flex;
-      border-radius: 10px;
-      background-color: #48dbfb;
-      grid-column: 1/2;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-top: 20px;
-      transition: 0.4s;
-      font-family: arial;
-      margin-right: 10px;
-    }
-
-    .addzamatka {
-      grid-column: 1/4;
-      margin-top: 7px;
-      height: 70px;
-      text-align: left;
-      font-size: 20px;
-      border-radius: 10px;
-      border: 2px solid rgb(255, 74, 206);
-      outline: none;
-      color: rgb(193, 193, 193);
-      background: transparent;
-
-    }
-
-    .add {
-      display: block;
-      border-radius: 10px;
-      background-color: #ff9f43;
-      grid-column: 2/3;
-      height: 60px;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      transition: 0.4s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: arial;
-      margin-top: 20px;
-      margin-right: 10px;
-
-    }
-
-    .a:hover {
-      transition: 0.4s;
-      opacity: 0.7;
-    }
-
-    .del {
-      border-radius: 10px;
-      background-color: rgb(241, 11, 11);
-      grid-column: 3/4;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-top: 20px;
-      padding: 20px;
-      transition: 0.4s;
-      font-family: arial;
-    }
-  </style>
+	<title></title>
+	<style type="text/css">
+		p{
+			font-size:30px;
+			font-family: Verdana; 
+		}
+		button{
+			font-size:30px; 
+		}
+		input{
+			width:20%;
+			height:50px;
+			font-size:30px;
+			border:3px solid red ; ;
+			margin-left:3%    
+		}
+	</style>
 </head>
-
 <body>
-
-
-  <div class="wrapper">
-    <div class="a prostaya">Простая заметка</div>
-    <div class="a vazhnaya">Важная заметка!</div>
-    <div class='a add'>Оставить заметку</div>
-    <div class="a del">Удалить заметку</div>
-
-    <textarea class='addzamatka' placeholder="Напишите заметку" autocomplete="on" required></textarea>
-    <div class="a notSpic">Пример простой заметки </div>
-    <div class="a spic">Пример важной заметки</div>
-
-  </div>
-
-  <script>
-    window.onload = function() {
-      if (localStorage.getItem("page")) document.getElementsByTagName("html")[0].innerHTML = localStorage.getItem("page");
-      // перезаписываем страницу при загрузке
-      a();
-    };
-
-    function a() {
-      document.querySelector('.prostaya').onclick = () => {
-        document.querySelector('.vazhnaya').style.display = 'flex';
-        document.querySelector('.prostaya').style.display = 'none';
-      }
-      document.querySelector('.vazhnaya').onclick = () => {
-
-        document.querySelector('.prostaya').style.display = 'flex';
-        document.querySelector('.vazhnaya').style.display = 'none';
-      }
-      //Создаем заметки
-      document.querySelector('.add').onclick = () => {
-        let text = document.querySelector('.addzamatka').value;
-        if (document.querySelector('.addzamatka').value == '') {
-          alert('Напишите заметку');
-        } else if (document.querySelector('.prostaya').style.display == 'none') {
-          let a = document.createElement("div");
-          a.classList.add('spic');
-          a.classList.add('zametka');
-          a.innerHTML = text;
-          if (a.length > 180) {
-            let br = createElement("br");
-            a.append(br);
-          }
-          document.querySelector('.wrapper').append(a);
-          localStorage.setItem("page", document.getElementsByTagName("html")[0].innerHTML);
-        } else {
-          let b = document.createElement("div");
-          b.classList.add('notSpic');
-          b.classList.add('zametka');
-          b.innerHTML = text;
-          if (b.length > 180) {
-            let br = createElement("br");
-            b.append(br);
-          }
-          document.querySelector('.wrapper').append(b);
-          localStorage.setItem("page", document.getElementsByTagName("html")[0].innerHTML);
-        }
-        document.querySelector('.addzamatka').value = '';
-      }
-      //Конец создания
-      //Удалеине заметок
-      document.querySelector('.del').onclick = () => {
-        const vazh = document.getElementsByTagName('div');
-        for (const elem of vazh) {
-          if (elem.classList.contains('zametka')) {
-            let parent = document.querySelector('.wrapper');
-            parent.removeChild(elem);
-            localStorage.setItem("page", document.getElementsByTagName("html")[0].innerHTML);
-          }
-        }
-      }
-    }
-    //Конец удаление заметок
-  </script>
+<p>Число 1<input type="text" id="q1"></p>
+<p>Число 2<input type="text" id="q2"></p>
+<button onclick="plus()">+</button>
+<button onclick="minus()">-</button>
+<button onclick="delen()">:</button>
+<button onclick="mnog()">*</button>
+<button onclick="ostdelen()">%</button>
+<hr>
+<p>Результат:<span id="out"></span></p>
+<button onclick="obnov()">Обновить</button>
+<script src="calc.js"></script>
 </body>
-
 </html>
